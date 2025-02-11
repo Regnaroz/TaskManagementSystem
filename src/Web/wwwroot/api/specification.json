@@ -1,0 +1,849 @@
+{
+  "x-generator": "NSwag v14.0.3.0 (NJsonSchema v11.0.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SampleProject API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/Admin/GetTasksCountByUser": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "GetTasksCountByUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOrOfListOfUserTaskCountDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Admin/GetTasksDueToday": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "GetTasksDueToday",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOrOfListOfTaskDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Authentication/Login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Login",
+        "requestBody": {
+          "x-name": "userDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Task/AddTask": {
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "operationId": "AddTask",
+        "requestBody": {
+          "x-name": "taskDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Task/UpdateTask": {
+      "put": {
+        "tags": [
+          "Task"
+        ],
+        "operationId": "UpdateTask",
+        "requestBody": {
+          "x-name": "taskDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Task/DeleteTask/{taskId}": {
+      "delete": {
+        "tags": [
+          "Task"
+        ],
+        "operationId": "DeleteTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Task/GetTasks": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "operationId": "GetTasks",
+        "requestBody": {
+          "x-name": "filter",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TasksFilter"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOrOfPaginatedListOfTaskDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Task/GetTaskById/{Id}": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "operationId": "GetTaskById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOrOfPaginatedListOfTaskDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Task/GetTaskByStatusAndUserId/{status}/{userId}": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "operationId": "GetTaskByStatusAndUserId",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Status"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorOrOfListOfTaskDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/AddUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "AddUser",
+        "requestBody": {
+          "x-name": "userDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/UpdateUser": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "UpdateUserPUT",
+        "requestBody": {
+          "x-name": "updateUserDto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/DeleteUser": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "UpdateUserDELETE",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetUsers/{userId}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "GetUsers",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorOrOfListOfUserTaskCountDto": {
+        "type": "object",
+        "description": "A discriminated union of errors or a value.",
+        "additionalProperties": false,
+        "properties": {
+          "isError": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the state is error."
+          },
+          "errors": {
+            "type": "array",
+            "description": "Gets the list of errors. If the state is not error, the list will contain a single error representing the state.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "errorsOrEmptyList": {
+            "type": "array",
+            "description": "Gets the list of errors. If the state is not error, the list will be empty.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "value": {
+            "type": "array",
+            "description": "Gets the value.",
+            "items": {
+              "$ref": "#/components/schemas/UserTaskCountDto"
+            }
+          },
+          "firstError": {
+            "description": "Gets the first error.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Error"
+              }
+            ]
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "description": "Represents an error.",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Gets the unique error code."
+          },
+          "description": {
+            "type": "string",
+            "description": "Gets the error description."
+          },
+          "type": {
+            "description": "Gets the error type.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ErrorType"
+              }
+            ]
+          },
+          "numericType": {
+            "type": "integer",
+            "description": "Gets the numeric value of the type.",
+            "format": "int32"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Gets the metadata.",
+            "nullable": true,
+            "additionalProperties": {}
+          }
+        }
+      },
+      "ErrorType": {
+        "type": "integer",
+        "description": "Error types.",
+        "x-enumNames": [
+          "Failure",
+          "Unexpected",
+          "Validation",
+          "Conflict",
+          "NotFound",
+          "Unauthorized",
+          "Forbidden"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "UserTaskCountDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "taskCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ErrorOrOfListOfTaskDto": {
+        "type": "object",
+        "description": "A discriminated union of errors or a value.",
+        "additionalProperties": false,
+        "properties": {
+          "isError": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the state is error."
+          },
+          "errors": {
+            "type": "array",
+            "description": "Gets the list of errors. If the state is not error, the list will contain a single error representing the state.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "errorsOrEmptyList": {
+            "type": "array",
+            "description": "Gets the list of errors. If the state is not error, the list will be empty.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "value": {
+            "type": "array",
+            "description": "Gets the value.",
+            "items": {
+              "$ref": "#/components/schemas/TaskDto"
+            }
+          },
+          "firstError": {
+            "description": "Gets the first error.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Error"
+              }
+            ]
+          }
+        }
+      },
+      "TaskDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/PriorityLevel"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "user": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            ]
+          }
+        }
+      },
+      "Status": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "NotStarted",
+          "InProgress",
+          "Completed",
+          "Deleted"
+        ],
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "PriorityLevel": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "enum": [
+          1,
+          2,
+          3
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthenticationResponseDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginUserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorOrOfPaginatedListOfTaskDto": {
+        "type": "object",
+        "description": "A discriminated union of errors or a value.",
+        "additionalProperties": false,
+        "properties": {
+          "isError": {
+            "type": "boolean",
+            "description": "Gets a value indicating whether the state is error."
+          },
+          "errors": {
+            "type": "array",
+            "description": "Gets the list of errors. If the state is not error, the list will contain a single error representing the state.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "errorsOrEmptyList": {
+            "type": "array",
+            "description": "Gets the list of errors. If the state is not error, the list will be empty.",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "value": {
+            "description": "Gets the value.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PaginatedListOfTaskDto"
+              }
+            ]
+          },
+          "firstError": {
+            "description": "Gets the first error.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Error"
+              }
+            ]
+          }
+        }
+      },
+      "PaginatedListOfTaskDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskDto"
+            }
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasPreviousPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TasksFilter": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Status"
+              }
+            ]
+          },
+          "priorityLevel": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PriorityLevel"
+              }
+            ]
+          },
+          "duoDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderBy": {
+            "$ref": "#/components/schemas/TasksOrderByEnum"
+          },
+          "isDesc": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TasksOrderByEnum": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "DuoDate",
+          "Priority",
+          "CreationDate"
+        ],
+        "enum": [
+          1,
+          2,
+          3
+        ]
+      },
+      "RegisterUserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
